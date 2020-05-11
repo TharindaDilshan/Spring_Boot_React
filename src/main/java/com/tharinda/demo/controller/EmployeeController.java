@@ -1,4 +1,4 @@
-package com.tharinda.controller;
+package com.tharinda.demo.controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.tharinda.service.EmployeeService;
-import com.tharinda.modal.Employee;
+import com.tharinda.demo.service.EmployeeService;
+import com.tharinda.demo.modal.Employee;
 @RestController
 @RequestMapping("/api")
 public class EmployeeController {
@@ -20,6 +20,7 @@ public class EmployeeController {
  
  @GetMapping("/employee")
  public List<Employee> get() {
+  System.out.println("shaminamina he he");
   return employeeService.get();
  }
  

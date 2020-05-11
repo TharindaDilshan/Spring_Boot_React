@@ -1,8 +1,8 @@
-package com.tharinda.service;
+package com.tharinda.demo.service;
 
 import java.util.List;
 
-import com.tharinda.modal.Employee;
+import com.tharinda.demo.modal.Employee;
 
 public interface EmployeeService {
 	List<Employee> get();

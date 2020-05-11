@@ -1,4 +1,4 @@
-package com.tharinda.dao;
+package com.tharinda.demo.dao;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.tharinda.modal.Employee;
+import com.tharinda.demo.modal.Employee;
 
 @Repository
 public class EmployeeDAOImp implements EmployeeDAO{
@@ -18,9 +18,10 @@ public class EmployeeDAOImp implements EmployeeDAO{
 	
 	@Override
 	public List<Employee> get(){
-		Session currentSession = entityManager.unwrap(Session.class);
-		Query<Employee> query = currentSession.createQuery("from Employee", Employee.class);
+		Session currSession = entityManager.unwrap(Session.class);
+		Query<Employee> query = currSession.createQuery("from Employee", Employee.class);
 		List<Employee> list = query.getResultList();
+		System.out.println("shaminamina");
 		return list;
 	}
 	

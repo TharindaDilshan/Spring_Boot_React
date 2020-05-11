@@ -1,8 +1,8 @@
-package com.tharinda.dao;
+package com.tharinda.demo.dao;
 
 import java.util.List;
 
-import com.tharinda.modal.Employee;
+import com.tharinda.demo.modal.Employee;
 
 public interface EmployeeDAO {
 	List<Employee> get();

@@ -1,4 +1,4 @@
-package com.tharinda.modal;
+package com.tharinda.demo.modal;
 
 import java.sql.Date;
 
