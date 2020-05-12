@@ -91,7 +91,7 @@ const useStyles = makeStyles(theme => ({
                         </TableHead>
                         <TableBody>
                         {data?.map(row => (
-                            <TableRow key={row.name}>
+                            <TableRow key={row.id}>
                             <TableCell align="center">{row.name}</TableCell>
                             <TableCell align="center">{row.department}</TableCell>
                             <TableCell align="center">{row.gender}</TableCell>
