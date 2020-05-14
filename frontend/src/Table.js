@@ -9,9 +9,12 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
 import GroupIcon from "@material-ui/icons/Group";
+import DeleteIcon from '@material-ui/icons/Delete';
 import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { IconButton } from '@material-ui/core';
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
     table: {
@@ -57,6 +60,20 @@ const useStyles = makeStyles(theme => ({
         updateData(body);
     }
 
+    async function deleteEmployee(id){
+        var link = "/api/employee/" + id;
+        isLoading = true
+        let response = await fetch(link,{
+            method: "DELETE"
+        })
+        isLoading = false
+        setLoad(true)
+    }
+
+    const deleteRecord = (id) => {
+        deleteEmployee(id)
+    }
+
     if(firstLoad){
         sampleFunction();
         setLoad(false);
@@ -67,7 +84,7 @@ const useStyles = makeStyles(theme => ({
     return(
         <div className={classes.paper}>
             <Avatar className={classes.avatar}>
-                <GroupIcon />
+                <GroupIcon/>
             </Avatar>
             <Typography component="h1" variant="h5">
                 Employee Directory
@@ -87,6 +104,7 @@ const useStyles = makeStyles(theme => ({
                             <TableCell align="center">Department</TableCell>
                             <TableCell align="center">Gender</TableCell>
                             <TableCell align="center">Dob</TableCell>
+                            <TableCell align="center"></TableCell>
                         </TableRow>
                         </TableHead>
                         <TableBody>
@@ -96,6 +114,10 @@ const useStyles = makeStyles(theme => ({
                             <TableCell align="center">{row.department}</TableCell>
                             <TableCell align="center">{row.gender}</TableCell>
                             <TableCell align="center">{row.dob}</TableCell>
+                            <TableCell align="center">
+                                <Button onClick={() => console.log('edit')} color="primary" variant="contained" style={{marginRight: '5px'}}>Edit</Button> 
+                                <Button onClick={() => deleteRecord(row.id)} color="secondary" variant="contained">Delete</Button> 
+                            </TableCell>
                             </TableRow>
                         ))}
                         </TableBody>
