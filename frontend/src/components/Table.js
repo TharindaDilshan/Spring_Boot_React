@@ -9,11 +9,9 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
 import GroupIcon from "@material-ui/icons/Group";
-import DeleteIcon from '@material-ui/icons/Delete';
 import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { IconButton } from '@material-ui/core';
 import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
@@ -115,7 +113,7 @@ const useStyles = makeStyles(theme => ({
                             <TableCell align="center">{row.gender}</TableCell>
                             <TableCell align="center">{row.dob}</TableCell>
                             <TableCell align="center">
-                                <Button onClick={() => console.log('edit')} color="primary" variant="contained" style={{marginRight: '5px'}}>Edit</Button> 
+                                <Link className='linkStyle' to={"/edit/" + row.id}><Button color="primary" variant="contained" style={{marginRight: '5px'}}>Edit</Button> </Link>
                                 <Button onClick={() => deleteRecord(row.id)} color="secondary" variant="contained">Delete</Button> 
                             </TableCell>
                             </TableRow>
