@@ -48,6 +48,7 @@ export default function EditEmployee(state){
     const [name, setName] = React.useState("");
     const [department, setDepartment] = React.useState("");
     const [gender, setGender] = React.useState("");
+    const [empId, setId] = React.useState(null);
 
     const handleDateChange = event => setSelectedDate(event.target.value);
     const handleNameChange = event => setName(event.target.value);
@@ -69,19 +70,27 @@ export default function EditEmployee(state){
         setDepartment(body.department)
         setGender(body.gender)
         setSelectedDate(body.dob)
+        setId(body.id)
     }
 
-    // async function editEmployee(employee){
-    //     const response = await fetch("/api/employee/")
-    // }
+    async function editEmployee(employee){
+        const response = await fetch("/api/employee",{
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(employee)
+        })
+
+        let body = await response.json();
+        setMessage(body.id ? "Data successfully updated" : "Failed to update data");
+
+    }
 
     const handleSubmit = variables => {
-        const employee = {name, department, gender, dob: selectedDate};
-        sampleFunction(employee);
-        setName("");
-        setDepartment("");
-        setGender("");
-        // setMessage(body.id ? "Data successfully updated" : "Failed to update data");
+        const employee = {id: empId, name, department, gender, dob: selectedDate};
+        editEmployee(employee);
+        setLoad(true);
     };
 
     if(firstLoad){
@@ -107,7 +116,7 @@ export default function EditEmployee(state){
                                 required
                                 fullWidth
                                 id="name"
-                                value={data.name}
+                                value={name}
                                 name="name"
                                 autoComplete="name"
                                 onChange={handleNameChange}
@@ -120,7 +129,7 @@ export default function EditEmployee(state){
                                 variant="outlined"
                                 required
                                 fullWidth
-                                value={data.department}
+                                value={department}
                                 id="department"
                                 onChange={handleDepartmentChange}
                             />
@@ -131,7 +140,7 @@ export default function EditEmployee(state){
                                 required
                                 fullWidth
                                 id="gender"
-                                value={data.gender}
+                                value={gender}
                                 name="gender"
                                 autoComplete="gender"
                                 onChange={handleGenderChange}
@@ -142,7 +151,7 @@ export default function EditEmployee(state){
                                 id="date"
                                 label="Date of birth"
                                 type="date"
-                                value={data.dob}
+                                value={selectedDate}
                                 // defaultValue={data.d}
                                 className={classes.textField}
                                 InputLabelProps={{

@@ -20,7 +20,6 @@ public class EmployeeController {
  
  @GetMapping("/employee")
  public List<Employee> get() {
-  System.out.println("shaminamina he he");
   return employeeService.get();
  }
  
